@@ -1,9 +1,34 @@
-import { NativeModules } from 'react-native';
+import {NativeModules} from 'react-native';
 
-type OpenloginReactNativeSdkType = {
-  multiply(a: number, b: number): Promise<number>;
+type OpenLoginReactNativeSdkType = {
+  login(params: { clientId: string, provider: LoginProvider, network: OpenLoginNetwork, }): Promise<{ privKey: string }>;
 };
 
-const { OpenloginReactNativeSdk } = NativeModules;
+export enum LoginProvider {
+  GOOGLE = "google",
+  FACEBOOK = "facebook",
+  REDDIT = "reddit",
+  DISCORD = "discord",
+  TWITCH = "twitch",
+  APPLE = "apple",
+  LINE = "line",
+  GITHUB = "github",
+  KAKAO = "kakao",
+  LINKEDIN = "linkedin",
+  TWITTER = "twitter",
+  WEIBO = "weibo",
+  WECHAT = "wechat",
+  EMAIL_PASSWORDLESS = "email_passwordless",
+  WEBAUTHN = "webauthn",
+  JWT = "jwt",
+}
 
-export default OpenloginReactNativeSdk as OpenloginReactNativeSdkType;
+export enum OpenLoginNetwork {
+  MAINNET = "mainnet",
+  TESTNET = "testnet",
+  DEVELOPMENT = "development",
+}
+
+const {OpenLoginReactNativeSdk} = NativeModules;
+
+export default OpenLoginReactNativeSdk as OpenLoginReactNativeSdkType;
