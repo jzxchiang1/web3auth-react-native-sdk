@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import com.facebook.react.bridge.*
-import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.openlogin.core.OpenLogin
 import java.lang.Exception
 import java.util.*
@@ -70,24 +69,32 @@ class OpenLoginReactNativeSdkModule(reactContext: ReactApplicationContext) : Rea
   }
 
   @ReactMethod
-  fun login(params: ReadableMap, promise: Promise) {
-    try {
-      val provider = params.getString("provider") as String
-      openlogin.login(loginProvider = OpenLogin.Provider.valueOf(provider.toUpperCase(Locale.ROOT)))
-      promise.resolve(null)
-    } catch (e: Exception) {
-      promise.reject(e)
-    }
+  fun login(params: ReadableMap, promise: Promise) = try {
+    val provider = params.getString("provider") as String
+    openlogin.login(loginProvider = OpenLogin.Provider.valueOf(provider.toUpperCase(Locale.ROOT)))
+    promise.resolve(null)
+  } catch (e: Exception) {
+    promise.reject(e)
   }
 
   @ReactMethod
-  fun logout(params: ReadableMap, promise: Promise) {
-    try {
-      openlogin.logout()
-      promise.resolve(null)
-    } catch (e: Exception) {
-      promise.reject(e)
-    }
+  fun logout(params: ReadableMap, promise: Promise) = try {
+    openlogin.logout()
+    promise.resolve(null)
+  } catch (e: Exception) {
+    promise.reject(e)
+  }
+
+  @ReactMethod
+  fun getState(promise: Promise) = try {
+    val map = Arguments.createMap()
+    map.putString("oAuthPrivateKey", openlogin.state.oAuthPrivateKey)
+    map.putString("privKey", openlogin.state.privKey)
+    map.putString("tKey", openlogin.state.tKey)
+    map.putString("walletKey", openlogin.state.walletKey)
+    promise.resolve(map)
+  } catch (e: Exception) {
+    promise.reject(e)
   }
 
 }

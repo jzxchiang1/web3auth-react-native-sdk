@@ -1,6 +1,6 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
 
-interface LoginResponse {
+interface State {
   privKey: string;
   oAuthPrivateKey?: string;
   tKey?: string;
@@ -8,38 +8,41 @@ interface LoginResponse {
 }
 
 type OpenLoginReactNativeSdkType = {
-  init(params: { clientId: string, network: string, redirectUrl: string }): Promise<void>;
-  login(params: { provider: LoginProvider }): Promise<LoginResponse>;
+  init(params: {
+    clientId: string;
+    network: string;
+    redirectUrl: string;
+  }): Promise<void>;
+  login(params: { provider: LoginProvider }): Promise<void>;
   logout(params: {}): Promise<void>;
+  getState(): Promise<State>;
 };
 
-const OpenLoginAuthStateChangedEvent = "OpenLoginAuthStateChangedEvent";
-
-
+const OpenLoginAuthStateChangedEvent = 'OpenLoginAuthStateChangedEvent';
 
 export enum LoginProvider {
-  GOOGLE = "google",
-  FACEBOOK = "facebook",
-  REDDIT = "reddit",
-  DISCORD = "discord",
-  TWITCH = "twitch",
-  APPLE = "apple",
-  LINE = "line",
-  GITHUB = "github",
-  KAKAO = "kakao",
-  LINKEDIN = "linkedin",
-  TWITTER = "twitter",
-  WEIBO = "weibo",
-  WECHAT = "wechat",
-  EMAIL_PASSWORDLESS = "email_passwordless",
-  WEBAUTHN = "webauthn",
-  JWT = "jwt",
+  GOOGLE = 'google',
+  FACEBOOK = 'facebook',
+  REDDIT = 'reddit',
+  DISCORD = 'discord',
+  TWITCH = 'twitch',
+  APPLE = 'apple',
+  LINE = 'line',
+  GITHUB = 'github',
+  KAKAO = 'kakao',
+  LINKEDIN = 'linkedin',
+  TWITTER = 'twitter',
+  WEIBO = 'weibo',
+  WECHAT = 'wechat',
+  EMAIL_PASSWORDLESS = 'email_passwordless',
+  WEBAUTHN = 'webauthn',
+  JWT = 'jwt',
 }
 
 export enum OpenLoginNetwork {
-  MAINNET = "mainnet",
-  TESTNET = "testnet",
-  DEVELOPMENT = "development",
+  MAINNET = 'mainnet',
+  TESTNET = 'testnet',
+  DEVELOPMENT = 'development',
 }
 
 const { OpenLoginReactNativeSdk } = NativeModules;
@@ -47,9 +50,11 @@ const { OpenLoginReactNativeSdk } = NativeModules;
 const eventEmitter = new NativeEventEmitter(OpenLoginReactNativeSdk);
 
 const extension = {
-  addOpenLoginAuthStateChangedEventListener: (listener: (state: LoginResponse) => void) => {
-    eventEmitter.addListener(OpenLoginAuthStateChangedEvent, listener)
-  }
+  addOpenLoginAuthStateChangedEventListener: (
+    listener: (state: State) => void
+  ) => {
+    eventEmitter.addListener(OpenLoginAuthStateChangedEvent, listener);
+  },
 };
 
 const sdk = OpenLoginReactNativeSdk as OpenLoginReactNativeSdkType;
