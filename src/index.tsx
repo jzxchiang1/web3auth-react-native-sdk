@@ -1,8 +1,21 @@
-import {NativeModules} from 'react-native';
+import { NativeModules, NativeEventEmitter } from 'react-native';
+
+interface LoginResponse {
+  privKey: string;
+  oAuthPrivateKey?: string;
+  tKey?: string;
+  walletKey?: string;
+}
 
 type OpenLoginReactNativeSdkType = {
-  login(params: { clientId: string, provider: LoginProvider, network: OpenLoginNetwork, }): Promise<{ privKey: string }>;
+  init(params: { clientId: string, network: string, redirectUrl: string }): Promise<void>;
+  login(params: { provider: LoginProvider }): Promise<LoginResponse>;
+  logout(params: {}): Promise<void>;
 };
+
+const OpenLoginAuthStateChangedEvent = "OpenLoginAuthStateChangedEvent";
+
+
 
 export enum LoginProvider {
   GOOGLE = "google",
@@ -29,6 +42,16 @@ export enum OpenLoginNetwork {
   DEVELOPMENT = "development",
 }
 
-const {OpenLoginReactNativeSdk} = NativeModules;
+const { OpenLoginReactNativeSdk } = NativeModules;
 
-export default OpenLoginReactNativeSdk as OpenLoginReactNativeSdkType;
+const eventEmitter = new NativeEventEmitter(OpenLoginReactNativeSdk);
+
+const extension = {
+  addOpenLoginAuthStateChangedEventListener: (listener: (state: LoginResponse) => void) => {
+    eventEmitter.addListener(OpenLoginAuthStateChangedEvent, listener)
+  }
+};
+
+const sdk = OpenLoginReactNativeSdk as OpenLoginReactNativeSdkType;
+
+export default { ...sdk, ...extension };
