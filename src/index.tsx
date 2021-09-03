@@ -1,6 +1,6 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
 
-interface State {
+export interface AuthState {
   privKey: string;
   oAuthPrivateKey?: string;
   tKey?: string;
@@ -10,12 +10,12 @@ interface State {
 type OpenLoginReactNativeSdkType = {
   init(params: {
     clientId: string;
-    network: string;
+    network: OpenLoginNetwork;
     redirectUrl: string;
   }): Promise<void>;
   login(params: { provider: LoginProvider }): Promise<void>;
   logout(params: {}): Promise<void>;
-  getState(): Promise<State>;
+  getState(): Promise<AuthState>;
 };
 
 const OpenLoginAuthStateChangedEvent = 'OpenLoginAuthStateChangedEvent';
@@ -51,7 +51,7 @@ const eventEmitter = new NativeEventEmitter(OpenLoginReactNativeSdk);
 
 const extension = {
   addOpenLoginAuthStateChangedEventListener: (
-    listener: (state: State) => void
+    listener: (state: AuthState) => void
   ) => {
     eventEmitter.addListener(OpenLoginAuthStateChangedEvent, listener);
   },
