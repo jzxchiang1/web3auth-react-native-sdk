@@ -40,7 +40,7 @@ class OpenLoginReactNativeSdkModule(reactContext: ReactApplicationContext) : Rea
     val network = params.getString("network") as String
     val redirectUrl = params.getString("redirectUrl")
     openlogin = OpenLogin(
-      context = reactApplicationContext,
+      context = currentActivity!!,
       clientId = clientId,
       network = OpenLogin.Network.valueOf(network.toUpperCase(Locale.ROOT)),
       redirectUrl = Uri.parse(redirectUrl ?: "${reactApplicationContext!!.packageName}://auth")
