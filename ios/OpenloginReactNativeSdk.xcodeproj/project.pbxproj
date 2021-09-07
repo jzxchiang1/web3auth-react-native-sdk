@@ -24,7 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libOpenloginReactNativeSdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenloginReactNativeSdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libOpenLoginReactNativeSdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenLoginReactNativeSdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5891CC2AC0600A0062D /* OpenloginReactNativeSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenloginReactNativeSdk.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* OpenloginReactNativeSdk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenloginReactNativeSdk-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* OpenLoginReactNativeSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginReactNativeSdk.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libOpenloginReactNativeSdk.a */,
+				134814201AA4EA6300B7C361 /* libOpenLoginReactNativeSdk.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 				E46357FF26E6EAC0009B7202 /* OpenLogin */,
 			);
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libOpenloginReactNativeSdk.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libOpenLoginReactNativeSdk.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "OpenloginReactNativeSdk" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "OpenLoginReactNativeSdk" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -234,7 +234,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = OpenloginReactNativeSdk;
+				PRODUCT_NAME = OpenLoginReactNativeSdk;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "OpenloginReactNativeSdk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -253,7 +253,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = OpenloginReactNativeSdk;
+				PRODUCT_NAME = OpenLoginReactNativeSdk;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "OpenloginReactNativeSdk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -263,7 +263,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "OpenloginReactNativeSdk" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "OpenLoginReactNativeSdk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
