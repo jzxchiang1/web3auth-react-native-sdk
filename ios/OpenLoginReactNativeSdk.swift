@@ -1,12 +1,13 @@
 import OpenLogin
 
-@objc(OpenLoginReactNativeSdk)
-class OpenLoginReactNativeSdk: NSObject {
+let OpenLoginAuthStateChangedEvent = "OpenLoginAuthStateChangedEvent"
 
-    @objc(multiply:withB:withResolver:withRejecter:)
-    func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        resolve(a*b)
-    }
+@objc(OpenLoginReactNativeSdk)
+class OpenLoginReactNativeSdk: RCTEventEmitter {
+    
+    private var webauth: WebAuth
+
+
     
     @objc(init:withResolver:withRejecter:)
     func `init`(params: [String:String], resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
@@ -15,18 +16,41 @@ class OpenLoginReactNativeSdk: NSObject {
             let networkString = params["network"] as? String,
             let network = Network(rawValue: networkString)
         else {
-            <#statements#>
+            reject("ArgumentError", "invalid clientId or network", nil)
+            return
         }
-        resolve(null)
+        webauth = OpenLogin.webAuth(clientId, network)
+        resolve(nil)
     }
     
     @objc(login:withResolver:withRejecter:)
     func login(params: [String:String], resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        resolve(null)
+        webauth.start {
+            switch $0 {
+            case .success(let result):
+                let m: [String: Any] = [
+                    "privKey": result.privKey,
+                    "userInfo": [
+                        "name": result.userInfo.name,
+                        "profileImage": result.userInfo.profileImage,
+                        "typeOfLogin": result.userInfo.typeOfLogin
+                    ]
+                ]
+                self.sendEvent(withName: OpenLoginAuthStateChangedEvent, body: m)
+                resolve(nil)
+            case .failure(let error):
+                reject("LoginError", "Error occured during login with openlogin-swift-sdk", error)
+            }
+        }
     }
     
     @objc(logout:withResolver:withRejecter:)
     func logout(params: [String:String], resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        resolve(null)
+        webauth.singOut()
+        resolve(nil)
+    }
+    
+    @objc open override func supportedEvents() -> [String]{
+        return [OpenLoginReactNativeSdk]
     }
 }

@@ -25,8 +25,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libOpenLoginReactNativeSdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenLoginReactNativeSdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5891CC2AC0600A0062D /* OpenloginReactNativeSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenloginReactNativeSdk.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* OpenloginReactNativeSdk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenloginReactNativeSdk-Bridging-Header.h"; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* OpenLoginReactNativeSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLoginReactNativeSdk.m; sourceTree = "<group>"; };
+		F4FF95D5245B92E700C19C63 /* OpenLoginReactNativeSdk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenLoginReactNativeSdk-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* OpenLoginReactNativeSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLoginReactNativeSdk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,8 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				F4FF95D6245B92E800C19C63 /* OpenLoginReactNativeSdk.swift */,
-				B3E7B5891CC2AC0600A0062D /* OpenloginReactNativeSdk.m */,
-				F4FF95D5245B92E700C19C63 /* OpenloginReactNativeSdk-Bridging-Header.h */,
+				B3E7B5891CC2AC0600A0062D /* OpenLoginReactNativeSdk.m */,
+				F4FF95D5245B92E700C19C63 /* OpenLoginReactNativeSdk-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -236,7 +236,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenLoginReactNativeSdk;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "OpenloginReactNativeSdk-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenLoginReactNativeSdk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -255,7 +255,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OpenLoginReactNativeSdk;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "OpenloginReactNativeSdk-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OpenLoginReactNativeSdk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -288,7 +288,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/torusresearch/openlogin-swift-sdk";
 			requirement = {
-				branch = feat/signout;
+				branch = master;
 				kind = branch;
 			};
 		};
