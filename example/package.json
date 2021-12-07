@@ -4,18 +4,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start"
+    "android": "ENTRY_FILE=index.tsx react-native run-android",
+    "ios": "ENTRY_FILE=index.tsx react-native run-ios",
+    "start": "ENTRY_FILE=index.tsx react-native start"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react": "17.0.2",
+    "react-native": "0.66.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/runtime": "^7.12.5",
     "babel-plugin-module-resolver": "^4.0.0",
+    "ios-deploy": "^1.11.4",
     "metro-react-native-babel-preset": "^0.64.0"
   }
 }

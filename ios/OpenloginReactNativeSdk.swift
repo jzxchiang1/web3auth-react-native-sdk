@@ -5,13 +5,15 @@ let OpenloginAuthStateChangedEvent = "OpenloginAuthStateChangedEvent"
 @objc(OpenloginReactNativeSdk)
 class OpenloginReactNativeSdk: RCTEventEmitter {
     
-    override init() {
-        super.init()
-    }
+    // override init() {
+    //     super.init()
+    // }
     
     private var webauth: WebAuth?
 
-
+    @objc static override func requiresMainQueueSetup() -> Bool {
+        return false
+    }
     
     @objc(init:withResolver:withRejecter:)
     func `init`(params: [String:String], resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {

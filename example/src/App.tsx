@@ -18,7 +18,7 @@ export default function App() {
       clientId:
         'BFDssx7rrb7p90lZ9l28PxB9fcIIai81pmOaMt1rMwzyQ-uWuG2srWRK_07Y55cNWbv2qVXVXNM-OXCW95c3TuQ',
       network: OpenloginNetwork.TESTNET,
-      redirectUrl: 'com.example.openloginreactnativesdk://auth',
+      redirectUrl: 'torusapp://openlogin/auth',
     })
       .then((result) => console.log(`success: ${result}`))
       .catch((err) => console.log(`error: ${err}`));
