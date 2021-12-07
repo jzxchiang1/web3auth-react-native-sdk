@@ -30,23 +30,26 @@ class OpenloginReactNativeSdk: RCTEventEmitter {
     @objc(login:withResolver:withRejecter:)
     func login(params: [String:String], resolve: @escaping RCTPromiseResolveBlock,reject: @escaping RCTPromiseRejectBlock) -> Void {
         if let wa = webauth {
-            wa.start {
-                switch $0 {
-                case .success(let result):
-                    let m: [String: Any] = [
-                        "privKey": result.privKey,
-                        "userInfo": [
-                            "name": result.userInfo.name,
-                            "profileImage": result.userInfo.profileImage,
-                            "typeOfLogin": result.userInfo.typeOfLogin
+            DispatchQueue.main.async {
+                wa.start {
+                    switch $0 {
+                    case .success(let result):
+                        let m: [String: Any] = [
+                            "privKey": result.privKey,
+                            "userInfo": [
+                                "name": result.userInfo.name,
+                                "profileImage": result.userInfo.profileImage,
+                                "typeOfLogin": result.userInfo.typeOfLogin
+                            ]
                         ]
-                    ]
-                    self.sendEvent(withName: OpenloginAuthStateChangedEvent, body: m)
-                    resolve(nil)
-                case .failure(let error):
-                    reject("LoginError", "Error occured during login with openlogin-swift-sdk", error)
+                        self.sendEvent(withName: OpenloginAuthStateChangedEvent, body: m)
+                        resolve(nil)
+                    case .failure(let error):
+                        reject("LoginError", "Error occured during login with openlogin-swift-sdk", error)
+                    }
                 }
             }
+
         } else {
             reject("InitError", "init has not been called yet", nil)
         }
